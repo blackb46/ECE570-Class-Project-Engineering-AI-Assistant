@@ -30,9 +30,8 @@ if st.button("Search"):
             )
 
             # Build Context
-            context = "\n\n".join([
-                f"[SOURCE {i + 1}]
-{chunk}" 
+            context = "\\n\\n".join([
+                f"[SOURCE {i + 1}]\\n{chunk}" 
                 for i, chunk in enumerate(results['documents'][0])
             ])
 
