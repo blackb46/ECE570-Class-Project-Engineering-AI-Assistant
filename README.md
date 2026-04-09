@@ -32,7 +32,7 @@ https://drive.google.com/drive/folders/1lIahiHz681nWmhUoXTqvCxo4174GzAIn?usp=sha
 Contains:
 - `Engineering_AI_Chatbot_CP2.ipynb` - full development and evaluation notebook
 - `evaluation_questions.csv` - 50-question test bank used for evaluation
-- `baseline_evaluation_results.csv` - CP1 baseline 50-question evaluation results
+- `baseline_evaluation_results.csv` - baseline 50-question evaluation results
 - `cp2_evaluation_results.csv` - CP2 four-configuration experiment results (200 scored answers)
 - `data/Engineering_Manual.docx` - source policy manual used to build the corpus
 - `Checkpoint_01_Backup/` - CP1 code and results preserved for reference
