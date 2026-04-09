@@ -35,14 +35,15 @@ def format_citations(chunks, metadatas):
             'char_start': position,
             'char_end': char_end,
             'section_estimate': section_estimate,
-            'preview': chunk_text[:80].replace('\n', '') + '...'
+            'preview': chunk_text[:80].replace('
+', '') + '...'
         }
         citations.append(citation)
     return citations
 
 # System prompt that tells the LLM how to behave when answering questions
 # Kept as a separate variable so it is easy to find and update if needed
-SYSTEM_PROMPT = """You are a municipal engineering policy assistant for a City
+SYSTEM_PROMPT = '''You are a municipal engineering policy assistant for a City
 
 RULES YOU MUST FOLLOW:
 1. Answer ONLY using the manual context provided. Never use outside knowledge.
@@ -51,7 +52,7 @@ RULES YOU MUST FOLLOW:
 4. If the answer requires combining information from multiple sources, list all of them.
 5. If the manual context does not contain enough information to answer the question, respond with: "The Engineering Policy Manual does not contain specific information about [topic]. Please refer to the appropriate section or department for this information."
 6. Never guess, infer, or fabricate policy requirements.
-7. Be precise - include specific numbers, measurements and code references when present in the manual."""
+7. Be precise - include specific numbers, measurements and code references when present in the manual.'''
 
 # Page Setup
 st.title(" 👷‍♂️Municipal Engineering Chatbot")
@@ -84,8 +85,11 @@ if st.button("Search"):
             metadatas=results['metadatas'][0]
 
             # Build Context
-            context = "\n\n".join([
-                f"[SOURCE {i + 1}]\n{chunk}" 
+            context = "
+
+".join([
+                f"[SOURCE {i + 1}]
+{chunk}" 
                 for i, chunk in enumerate(chunks)
             ])
 
@@ -97,7 +101,9 @@ if st.button("Search"):
                 model="claude-sonnet-4-5-20250929",
                 max_tokens=1000,
                 system=SYSTEM_PROMPT,
-                messages=[{"role": "user", "content": f"Context: {context}\n\nQuestion: {question}"}]
+                messages=[{"role": "user", "content": f"Context: {context}
+
+Question: {question}"}]
             )
 
             # Display Answer
