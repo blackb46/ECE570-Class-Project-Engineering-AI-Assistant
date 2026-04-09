@@ -3,3 +3,5 @@
    chromadb
    sentence-transformers
    python-docx
+   pandas
+   protobuf==3.20.3
