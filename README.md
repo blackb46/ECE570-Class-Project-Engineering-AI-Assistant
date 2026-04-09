@@ -137,15 +137,16 @@ The following describes what was written personally by me, what was adapted, and
 - Chunk size and overlap are set in Cell 7 of the Colab notebook in the create_chunks() call
 - Cell 17 of the notebook runs a systematic comparison across multiple configurations
 - After running Cell 17, the vectorstore is automatically reset to Config B (400/75) at the end of the experiment loop. This ensures the vectorstore saved to Google Drive is always the optimal deployed configuration regardless of which configuration ran last during testing.
-- After selecting new parameters, rebuild the vectorstore and update the repository
+- After selecting new parameters, rebuild the vectorstore and update the repository. This can be seen at the end of Cell 17 where you can actually select the proper config based on the results to properly build the vectorstore.
 
 **To update the system prompt:**
-- The system prompt is defined as SYSTEM_PROMPT in engineering.py
-- Edit the rules directly in that variable and push to GitHub
-- The same system prompt is also defined in Cell 10 of the Colab notebook and should be kept in sync
+- The system prompt is written to give the instructions and rules to the LLM on how to respond.
+- The system prompt is defined as `SYSTEM_PROMPT` in `engineering.py`
+- Edit the rules directly in that variable and manually overwrite the `engineering.py` file in the GitHub repo
+- The same system prompt is also defined in Cell 10 of the Colab notebook and should be kept in sync across all notebooks and code.
 
 **To add evaluation questions:**
-- Add rows to evaluation_questions.csv following the existing format
+- Add rows to `evaluation_questions.csv` following the existing format
 - Number, Category, Question, and Expected_Result columns are required
 - Expected_Result must be either "Fully Answered" or "Proper Abstention"
 - Rerun Cells 14-18 in the Colab notebook to score the updated question set
