@@ -63,7 +63,8 @@ if 'model' not in st.session_state:
     st.session_state.collection = st.session_state.db.get_collection(name="manual_collection")
 
 # User input
-question = st.text_area("Ask a question about a policy for the City contained in the Engineering Policy Manual:", height=100)
+st.subheader("Ask a question about a policy for the City contained in the Engineering Policy Manual:")
+question = st.text_area("", height=100)
 
 # Search button
 if st.button("Search"):
