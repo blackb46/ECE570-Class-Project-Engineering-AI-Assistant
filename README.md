@@ -14,6 +14,31 @@ https://ece570-class-project-engineering-ai-assistant-gvtxjsbgzc6pkujc.streamlit
 
 ---
 
+### Code and Materials
+This project is split across two locations:
+
+**GitHub Repository (Streamlit deployment code):**
+https://github.com/blackb46/ece570-class-project-engineering-ai-assistant
+
+Contains:
+- `engineering.py` - the deployed Streamlit web application
+- `requirements.txt` - Python dependencies for Streamlit Cloud
+- `README.md` - this file
+- `vectorstore/` - pre-built ChromaDB index built from the Engineering Policy Manual using Config B (400/75)
+
+**Google Drive (Colab development notebook and evaluation files):**
+https://drive.google.com/drive/folders/1lIahiHz681nWmhUoXTqvCxo4174GzAIn?usp=sharing
+
+Contains:
+- `Engineering_AI_Chatbot_CP2.ipynb` - full development and evaluation notebook
+- `evaluation_questions.csv` - 50-question test bank used for evaluation
+- `baseline_evaluation_results.csv` - CP1 baseline 50-question evaluation results
+- `cp2_evaluation_results.csv` - CP2 four-configuration experiment results (200 scored answers)
+- `data/Engineering_Manual.docx` - source policy manual used to build the corpus
+- `Checkpoint_01_Backup/` - CP1 code and results preserved for reference
+
+---
+
 ### Repository Structure
 ```
 ├── engineering.py              # Main Streamlit web application
@@ -22,8 +47,6 @@ https://ece570-class-project-engineering-ai-assistant-gvtxjsbgzc6pkujc.streamlit
 ├── vectorstore/                # ChromaDB persistent vector database
 │   └── chroma.sqlite3          # Vector index built from the Engineering Policy Manual
 ```
-
-The Colab development notebook and evaluation CSV files are maintained separately in Google Drive and are not included in this repository. The vectorstore folder contains the pre-built index so the app does not need to rebuild embeddings on startup.
 
 ---
 
@@ -112,11 +135,13 @@ The following describes what was written by me, what was adapted, and what came 
 **To adjust chunk parameters:**
 - Chunk size and overlap are set in Cell 7 of the Colab notebook in the create_chunks() call
 - Cell 17 of the notebook runs a systematic comparison across multiple configurations
+- After running Cell 17, the vectorstore is automatically reset to Config B (400/75) at the end of the experiment loop. This ensures the vectorstore saved to Google Drive is always the optimal deployed configuration regardless of which configuration ran last during testing.
 - After selecting new parameters, rebuild the vectorstore and update the repository
 
 **To update the system prompt:**
 - The system prompt is defined as SYSTEM_PROMPT in engineering.py
 - Edit the rules directly in that variable and push to GitHub
+- The same system prompt is also defined in Cell 10 of the Colab notebook and should be kept in sync
 
 **To add evaluation questions:**
 - Add rows to evaluation_questions.csv following the existing format
