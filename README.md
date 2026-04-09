@@ -41,11 +41,11 @@ Contains:
 
 ### Repository Structure
 ```
-├── engineering.py              # Main Streamlit web application
-├── requirements.txt            # Python dependencies
-├── README.md                   # This file
-├── vectorstore/                # ChromaDB persistent vector database
-│   └── chroma.sqlite3          # Vector index built from the Engineering Policy Manual
+engineering.py          # Main Streamlit web application
+requirements.txt        # Python dependencies
+README.md               # This file
+vectorstore/            # ChromaDB persistent vector database
+chroma.sqlite3      # Vector index built from the Engineering Policy Manual
 ```
 
 ---
