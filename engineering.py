@@ -35,8 +35,7 @@ def format_citations(chunks, metadatas):
             'char_start': position,
             'char_end': char_end,
             'section_estimate': section_estimate,
-            'preview': chunk_text[:80].replace('
-', '') + '...'
+            'preview': chunk_text[:80].replace('\n', '') + '...'
         }
         citations.append(citation)
     return citations
