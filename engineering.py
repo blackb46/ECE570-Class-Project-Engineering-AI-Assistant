@@ -84,11 +84,10 @@ if st.button("Search"):
             metadatas=results['metadatas'][0]
 
             # Build Context
-            context = "\n\n".join([
-                f"[SOURCE {i + 1}]
-{chunk}" 
-                for i, chunk in enumerate(chunks)
-            ])
+            context_parts = []
+            for i, chunk in enumerate(chunks):
+                context_parts.append("[SOURCE " + str(i + 1) + "]" + chr(10) + chunk)
+            context = (chr(10) + chr(10)).join(context_parts)
 
             # Get answer from Claude
             api_key = st.secrets["CLAUDE_API_KEY"]
