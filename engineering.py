@@ -84,9 +84,7 @@ if st.button("Search"):
             metadatas=results['metadatas'][0]
 
             # Build Context
-            context = "
-
-".join([
+            context = "\n\n".join([
                 f"[SOURCE {i + 1}]
 {chunk}" 
                 for i, chunk in enumerate(chunks)
@@ -100,9 +98,7 @@ if st.button("Search"):
                 model="claude-sonnet-4-5-20250929",
                 max_tokens=1000,
                 system=SYSTEM_PROMPT,
-                messages=[{"role": "user", "content": f"Context: {context}
-
-Question: {question}"}]
+                messages=[{"role": "user", "content": f"Context: {context}\n\nQuestion: {question}"}]
             )
 
             # Display Answer
