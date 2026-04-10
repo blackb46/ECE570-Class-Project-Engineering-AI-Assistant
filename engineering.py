@@ -68,17 +68,6 @@ with st.form(key="search_form"):
     question = st.text_area("", height=100)
     submitted = st.form_submit_button("Search")
 
-# Example questions shown below the input box
-with st.expander("Example questions you can ask"):
-    st.markdown("""
-- What is the minimum pipe diameter allowed for storm drain pipes?
-- What is the maximum side slope allowed for a detention pond?
-- What pipe material is required for storm drains under residential driveways?
-- What is the minimum thickness of stone required for a stabilized construction exit?
-- What is the average and minimum buffer width for a construction site adjacent to Exceptional Waters?
-- What design storm frequency is required for local residential streets?
-""")
-
 # Search button
 answer_placeholder = st.empty()
 if submitted:
@@ -131,3 +120,14 @@ if submitted:
                     st.text(chunks[c['source_num'] - 1])
     else:
         st.warning("Please enter a question.")
+
+# Example questions shown below the input box
+with st.expander("Example questions you can ask"):
+    st.markdown("""
+- What is the minimum pipe diameter allowed for storm drain pipes?
+- What is the maximum side slope allowed for a detention pond?
+- What pipe material is required for storm drains under residential driveways?
+- What is the minimum thickness of stone required for a stabilized construction exit?
+- What is the average and minimum buffer width for a construction site adjacent to Exceptional Waters?
+- What design storm frequency is required for local residential streets?
+""")
