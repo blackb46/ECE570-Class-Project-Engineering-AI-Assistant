@@ -64,7 +64,9 @@ if 'model' not in st.session_state:
 
 # User input
 st.subheader("Ask a question about a policy for the City contained in the Engineering Policy Manual:")
-question = st.text_area("", height=100)
+with st.form(key="search_form"):
+    question = st.text_area("", height=100)
+    submitted = st.form_submit_button("Search")
 
 # Example questions shown below the input box
 st.markdown("**Example questions you can ask:**")
@@ -78,7 +80,7 @@ st.markdown("""
 """)
 
 # Search button
-if st.button("Search"):
+if submitted:
     if question:
         # Search the manual
         with st.spinner("Searching..."):
@@ -126,4 +128,4 @@ if st.button("Search"):
                     st.write(f"**Preview:** {c['preview']}")
                     st.text(chunks[c['source_num'] - 1])
     else:
-            st.warning("Please enter a question.")
+        st.warning("Please enter a question.")
