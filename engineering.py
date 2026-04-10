@@ -66,6 +66,17 @@ if 'model' not in st.session_state:
 st.subheader("Ask a question about a policy for the City contained in the Engineering Policy Manual:")
 question = st.text_area("", height=100)
 
+# Example questions shown below the input box
+st.markdown("**Example questions you can ask:**")
+st.markdown("""
+- What is the minimum pipe diameter allowed for storm drain pipes?
+- What is the maximum side slope allowed for a detention pond?
+- What pipe material is required for storm drains under residential driveways?
+- What is the minimum thickness of stone required for a stabilized construction exit?
+- What is the average and minimum buffer width for a construction site adjacent to Exceptional Waters?
+- What design storm frequency is required for local residential streets?
+""")
+
 # Search button
 if st.button("Search"):
     if question:
