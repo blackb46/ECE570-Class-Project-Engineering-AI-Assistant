@@ -69,8 +69,8 @@ with st.form(key="search_form"):
     submitted = st.form_submit_button("Search")
 
 # Example questions shown below the input box
-st.markdown("**Example questions you can ask:**")
-st.markdown("""
+with st.expander("Example questions you can ask"):
+    st.markdown("""
 - What is the minimum pipe diameter allowed for storm drain pipes?
 - What is the maximum side slope allowed for a detention pond?
 - What pipe material is required for storm drains under residential driveways?
@@ -80,6 +80,7 @@ st.markdown("""
 """)
 
 # Search button
+answer_placeholder = st.empty()
 if submitted:
     if question:
         # Search the manual
@@ -114,8 +115,9 @@ if submitted:
             )
 
             # Display Answer
-            st.subheader("Answer:")
-            st.write(response.content[0].text)
+            with answer_placeholder.container():
+                st.subheader("Answer:")
+                st.write(response.content[0].text)
 
             # Display Sources
             citations = format_citations(chunks, metadatas)
