@@ -15,6 +15,19 @@ https://ece570-class-project-engineering-ai-assistant-gvtxjsbgzc6pkujc.streamlit
 
 -----
 
+### Reproducibility Quickstart
+For graders who want to run this locally in under two minutes:
+1. `git clone https://github.com/blackb46/ece570-class-project-engineering-ai-assistant.git`
+2. `cd ece570-class-project-engineering-ai-assistant`
+3. `pip install -r requirements.txt`
+4. Create `.streamlit/secrets.toml` with `CLAUDE_API_KEY = "your-anthropic-key"`
+5. `streamlit run engineering.py`
+
+The committed `vectorstore/` folder is pre-built using **Configuration B (chunk size 400, overlap 75, 95 chunks, 384-dim all-MiniLM-L6-v2 embeddings)** — no rebuild is required to run the app. To verify or rebuild from scratch, run the Colab notebook (`Engineering_AI_Chatbot_CP2.ipynb`) end-to-end; Cell 17 ends by resetting the vectorstore to Config B, ensuring the rebuilt index matches the deployed configuration.
+
+**Source for evaluation results:** `Engineering_AI_Chatbot_CP2.ipynb`, Cell 17 — all numbers reported in the term paper trace back to this cell's executed output. Raw CSVs are in the Google Drive folder linked above.
+-----
+
 ### Code and Materials
 This project is split across two locations:
 
@@ -121,7 +134,9 @@ The following describes what was written personally by me, what was adapted, and
 - Added `automated scorer (score_answer, run_evaluation)` to eliminate continual manual review
 - Added chunk parameter experiment loop testing four configurations (A: 300/50, B: 400/75, C: 500/100, and D: 600/150)
 - Optimal configuration identified: Config B (400/75)
-- Results: 38/40 fully answered (95.0%), 10/10 proper abstentions (100%), 0/200 hallucinations (0%)
+- Results: across four configurations (200 scored answers total): 0/200 hallucinations (0%) and 100% proper abstention in every configuration. Config B (400/75) was the best-performing chunk configuration at 38/40 fully answered (95.0%).
+
+Note: Cell 17 of the notebook was re-executed after CP1 submission for Streamlit Cloud deployment preparation. The re-execution produced a baseline (CP1) score of 36/40 (90.0%) and a Config D score of 37/40 (92.5%). The report preserves the as-submitted CP1 values (35/40 = 87.5% and 35/40 = 87.5% respectively) for historical accuracy. Config B's 38/40 = 95.0% result is identical in both runs.
 
 -----
 
