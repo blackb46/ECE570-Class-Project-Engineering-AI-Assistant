@@ -55,7 +55,7 @@ RULES YOU MUST FOLLOW:
 7. Be precise - include specific numbers, measurements and code references when present in the manual.'''
 
 # Page Setup
-st.title(" 👷‍♂️Municipal Engineering Chatbot")
+st.title("👷‍♂️Municipal Engineering Chatbot")
 
 # Initialize models
 if 'model' not in st.session_state:
