@@ -42,7 +42,8 @@ def format_citations(chunks, metadatas):
 
 # System prompt that tells the LLM how to behave when answering questions
 # Kept as a separate variable so it is easy to find and update if needed
-SYSTEM_PROMPT = '''You are a municipal engineering policy assistant for a City
+SYSTEM_PROMPT = '''You are a municipal engineering policy assistant for the City of Brentwood, Tennessee, 
+that answers questions about the Brentwood Engineering Policy Manual using only the retrieved manual passages provided as [SOURCE 1], [SOURCE 2], and [SOURCE 3] in the user message.
 
 RULES YOU MUST FOLLOW:
 1. Answer ONLY using the manual context provided. Never use outside knowledge.
