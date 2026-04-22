@@ -1,3 +1,24 @@
+"""
+Municipal Engineering AI Chatbot — ECE 570 Final Project, Track 2 (Product/Prototype).
+
+A Retrieval-Augmented Generation (RAG) chatbot that answers municipal engineering
+policy questions grounded strictly in the City of Brentwood Engineering Policy Manual.
+
+Architecture:
+    Corpus      : Engineering_Manual.docx (30,775 characters, single source)
+    Chunking    : Character-based, Configuration B (chunk_size=400, overlap=75, 95 chunks)
+    Embeddings  : sentence-transformers all-MiniLM-L6-v2 (384-dim)
+    Vector DB   : ChromaDB persistent collection (top-3 cosine retrieval)
+    LLM         : Anthropic Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)
+    Grounding   : System prompt enforces source-only answers and explicit abstention
+    UI          : Streamlit single-page app with expandable source citations
+
+Reproducibility: see README.md for clone-and-run instructions.
+Evaluation: 95.0% retrieval accuracy, 100% abstention accuracy, 0% hallucinations
+on the 50-question evaluation bank (Configuration B).
+
+Author: Kevin L. Blackburn, P.E., GISP — Purdue MSAI, Spring 2026
+"""
 
 import streamlit as st
 import anthropic
