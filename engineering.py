@@ -135,7 +135,7 @@ if submitted:
             # System prompt is passed via the dedicated `system=` parameter (not embedded in
             # the user message) — this is what enforces the zero-hallucination grounding behavior.
             response = client.messages.create(
-                model="claude-sonnet-4-5-20250929",
+                model="claude-sonnet-4-5-20250929", # Sonnet 4.5: required for 200k context and strong instruction-following
                 max_tokens=1000,
                 system=SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": f"Context: {context}\n\nQuestion: {question}"}]
