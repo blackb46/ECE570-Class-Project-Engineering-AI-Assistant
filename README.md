@@ -58,8 +58,9 @@ Contains:
 engineering.py          # Main Streamlit web application - file is created in Colab and then manually copied into the GitHub repo
 requirements.txt        # Python dependencies
 README.md               # This file
-vectorstore/            # ChromaDB persistent vector database folder
-chroma.sqlite3          # Vector index built from the Engineering Policy Manual
+vectorstore/            # ChromaDB persistent vector database folder (Config B: 400/75, 95 chunks, 384-dim)
+chroma.sqlite3          # SQLite index file
+<segment-uuid>/         # Six binary segment folders (HNSW index, embeddings, metadata)
 ```
 
 -----
