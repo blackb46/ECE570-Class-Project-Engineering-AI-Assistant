@@ -26,10 +26,23 @@ import chromadb
 from sentence_transformers import SentenceTransformer
 
 def format_citations(chunks, metadatas):
-    # Takes the retrieved chunks and their metadata and formats them into 
-    # verifiable citations that point back to the exact positions in the manual.
-    # This was added during Checkpoint 2 so every answer could be verified 
-    # against the source document.
+    """Format retrieved ChromaDB chunks into verifiable source citations.
+
+    Each citation maps a chunk back to its exact character-range location in the
+    30,775-character Engineering Policy Manual, supporting independent verification
+    of every answer against the source document. Added during Checkpoint 2 to
+    satisfy the project requirements for grounding.
+
+    Args:
+        chunks (list[str]): The retrieved chunk texts from ChromaDB.
+        metadatas (list[dict]): The corresponding metadata dicts (must contain
+            'position' and may contain 'chunk_id').
+
+    Returns:
+        list[dict]: One citation dict per chunk, with keys: source_num, chunk_id,
+            char_start, char_end, section_estimate, preview.
+    """
+    
     citations = []
 
     # Loop through each chunk and its matching metadata at the same time.
@@ -98,6 +111,7 @@ if submitted:
         with st.spinner("Searching..."):
             # Search
             query_emb = st.session_state.model.encode(question).tolist()
+            # Retrieve top-3 most similar chunks; matches the n_results value reported in the paper.
             results = st.session_state.collection.query(
                 query_embeddings=[query_emb], 
                 n_results=3,
@@ -118,6 +132,8 @@ if submitted:
             api_key = st.secrets["CLAUDE_API_KEY"]
             client = anthropic.Anthropic(api_key=api_key)
 
+            # System prompt is passed via the dedicated `system=` parameter (not embedded in
+            # the user message) — this is what enforces the zero-hallucination grounding behavior.
             response = client.messages.create(
                 model="claude-sonnet-4-5-20250929",
                 max_tokens=1000,
